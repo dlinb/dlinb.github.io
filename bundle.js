@@ -39,8 +39,7 @@ $(document).ready(function() {
     $('<img src="'+imageUrl+'"/>').appendTo($('.results-image'));
 
     // Try to run predict on the input
-	model = app.models.get('general-v1.3')
-    model.predict([imageUrl]).then(
+    app.models.predict("processing", [imageUrl]).then(
       function(response) {
         var concepts = response.outputs[0].data.concepts;
 
