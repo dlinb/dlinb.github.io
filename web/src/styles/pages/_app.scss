@@ -76,7 +76,8 @@ body {
   -webkit-animation: splashout 1s ease forwards;
 }
 
-/* MAIN LOGO */
+// Soundrown Logo
+//---------------------------------------
 .mainlogo img {
   position: absolute;
   top: 60px;
@@ -87,7 +88,22 @@ body {
     width: 100px;
   }
 }
-/* END MAIN LOGO */
+
+// Sound Container
+//---------------------------------------
+.sounds-container {
+  position: relative;
+  padding: 120px $spacing;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-gap: $spacing;
+  justify-items: center;
+  @include bp-medium {
+    padding: 60px $spacing;
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
 
 /* MUTE BUTTON */
 #mute-frame {
@@ -126,21 +142,6 @@ body {
   opacity: 1;
 }
 /* END MUTE BUTTON */
-
-// Sound Container
-//---------------------------------------
-.sounds-container {
-  position: relative;
-  padding: 120px $spacing;
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  grid-gap: $spacing;
-  justify-items: center;
-  @include bp-medium {
-    padding: 60px $spacing;
-    grid-template-columns: repeat(2, auto);
-  }
-}
 
 /* NAV */
 #navcontainer {
