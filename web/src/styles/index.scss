@@ -1,0 +1,13 @@
+// Modules
+@import "./modules/colors";
+@import "./modules/variables";
+@import "./modules/responsive";
+@import "./modules/animation";
+@import "./typography/typography";
+
+// Components
+@import "./components/soundCard";
+@import "./components/slider";
+
+// Pages
+@import "./pages/app";

@@ -1,0 +1,119 @@
+// Splash Animation
+//---------------------------------------
+// Splash
+@keyframes splash {
+  0% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+// Splash Text
+@keyframes splashtext {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+// Splash Logo
+@keyframes splashlogo {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 14px, 0);
+  }
+}
+
+// Slider Buttons
+//---------------------------------------
+// Right Slider
+@keyframes rightslide {
+  100% {
+    transform: translate3d(2px, 0, 0);
+  }
+}
+// Right Slider Reverse
+@keyframes rightslidereverse {
+  0% {
+    transform: translate3d(2px, 0, 0);
+  }
+}
+// Left Slider
+@keyframes leftslide {
+  100% {
+    transform: translate3d(-2px, 0, 0);
+  }
+}
+// Left Slider Reverse
+@keyframes leftslidereverse {
+  0% {
+    transform: translate3d(-2px, 0, 0);
+  }
+}
+
+// Nav Slide Animations
+//---------------------------------------
+@keyframes naviconslide {
+  100% {
+    transform: translate3d(-30px, 0, 0);
+  }
+}
+@keyframes naviconslidereverse {
+  0% {
+    transform: translate3d(-30px, 0, 0);
+  }
+}
+
+// Icon Animations
+//---------------------------------------
+// Icon Drop
+@keyframes icondrop {
+  100% {
+    margin-top: 10px;
+  }
+}
+// Icon Drop Reverse
+@keyframes icondropreverse {
+  0% {
+    margin-top: 10px;
+  }
+}
+// Icon Pulse
+@keyframes iconactive-pulse {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
