@@ -7,6 +7,9 @@
 .sound-card {
   position: relative;
   padding: 100px;
+  @include bp-small {
+    padding: 60px;
+  }
   border-radius: $border-radius-card;
   background-color: $background-color;
   cursor: pointer;

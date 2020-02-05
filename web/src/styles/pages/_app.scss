@@ -39,6 +39,9 @@ body {
 .splash-logo-block {
   overflow: hidden;
   height: 48px;
+  @include bp-small {
+    height: 30px;
+  }
 
   .splash-logo {
     margin: auto;
@@ -50,6 +53,9 @@ body {
     letter-spacing: 16px;
     animation: splashlogo 2s ease 1.5s forwards;
     -webkit-animation: splashlogo 2s ease 1.5s forwards;
+    @include bp-small {
+      font-size: 24px;
+    }
   }
 }
 
@@ -60,6 +66,9 @@ body {
   letter-spacing: 5px;
   animation: splashtext 1s ease forwards;
   -webkit-animation: splashtext 1s ease forwards;
+  @include bp-small {
+    font-size: 16px;
+  }
 }
 
 .splashout {
@@ -72,6 +81,11 @@ body {
   position: absolute;
   top: 60px;
   left: 100px;
+  @include bp-medium {
+    left: 5%;
+    top: 5%;
+    width: 100px;
+  }
 }
 /* END MAIN LOGO */
 
@@ -123,6 +137,7 @@ body {
   grid-gap: $spacing;
   justify-items: center;
   @include bp-medium {
+    padding: 60px $spacing;
     grid-template-columns: repeat(2, auto);
   }
 }
