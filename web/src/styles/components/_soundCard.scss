@@ -1,3 +1,6 @@
+$sound-size-desktop: 200px;
+$sound-size-mobile: 120px;
+
 // Sound Card Styles
 //---------------------------------------
 .sound-card-container {
@@ -6,9 +9,11 @@
 
 .sound-card {
   position: relative;
-  padding: 100px;
+  width: $sound-size-desktop;
+  height: $sound-size-desktop;
   @include bp-small {
-    padding: 60px;
+    width: $sound-size-mobile;
+    height: $sound-size-mobile;
   }
   border-radius: $border-radius-card;
   background-color: $background-color;

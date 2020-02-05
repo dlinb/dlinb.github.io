@@ -1,0 +1,40 @@
+// Mute All Button
+//---------------------------------------
+.mute-frame {
+  position: relative;
+  justify-self: end;
+}
+.mute {
+  position: relative;
+  opacity: 0.25;
+  cursor: pointer;
+
+  img,
+  span {
+    position: absolute;
+    right: 0;
+    color: $off-white;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+    transform: translate(-50%, -10%);
+  }
+  span {
+    opacity: 0;
+    white-space: nowrap;
+  }
+  &:hover {
+    opacity: 1;
+    img {
+      transform: translate(-250%, -10%);
+    }
+    span {
+      opacity: 1;
+    }
+  }
+  &.muted {
+    opacity: 1;
+  }
+}

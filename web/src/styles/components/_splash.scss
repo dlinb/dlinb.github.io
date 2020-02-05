@@ -1,0 +1,62 @@
+// Splash
+//---------------------------------------
+.splash-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  color: $off-white;
+  background-color: $background-color;
+  z-index: 1000;
+  cursor: pointer;
+  animation: splash 5s ease forwards;
+  -webkit-animation: splash 5s ease forwards;
+  transition: none;
+}
+
+.splash-content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.splash-logo-block {
+  overflow: hidden;
+  height: 48px;
+  @include bp-small {
+    height: 30px;
+  }
+
+  .splash-logo {
+    margin: auto;
+    font-size: 48px;
+    line-height: normal;
+    text-align: center;
+    vertical-align: middle;
+    opacity: 0;
+    letter-spacing: 16px;
+    animation: splashlogo 2s ease 1.5s forwards;
+    -webkit-animation: splashlogo 2s ease 1.5s forwards;
+    @include bp-small {
+      font-size: 24px;
+    }
+  }
+}
+
+.splash-text {
+  margin: 60px auto;
+  text-align: center;
+  font-size: 48px;
+  letter-spacing: 5px;
+  animation: splashtext 1s ease forwards;
+  -webkit-animation: splashtext 1s ease forwards;
+  @include bp-small {
+    font-size: 16px;
+  }
+}
+
+.splashout {
+  animation: splashout 1s ease forwards;
+  -webkit-animation: splashout 1s ease forwards;
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { soundManager } from 'soundmanager2';
-import Slider, { Range } from 'rc-slider';
+import ReactGA from 'react-ga';
+import Slider from 'rc-slider';
 
 // Assets
 import iconPause from '../images/icon/icon_pause.svg';
@@ -31,6 +32,7 @@ class SoundCard extends Component {
         soundManager.createSound({
           id: id,
           url: streamUrl,
+          loops: 2
         })
       },
       ontimeout: function () {
@@ -47,7 +49,11 @@ class SoundCard extends Component {
     } else {
       this.setState({ isPlaying: false });
     }
-    console.log(id + " Meow meow meow")
+    ReactGA.event({
+      category: 'Sounds',
+      action: 'Play',
+      label: id
+    });
   };
 
   handleVolumeSliderChange(value) {

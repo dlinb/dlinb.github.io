@@ -1,20 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ReactGA from 'react-ga';
+import AdSense from 'react-adsense-ad';
+
 import './styles/index.scss';
-import './js/soundrown_script';
-import ReactPlayer from 'react-player'
+import Timer from 'react-compound-timer';
 import SoundCard from './components/soundCard';
+import Splash from './components/splash';
+import MuteAll from './components/muteAll';
 
 // Assets
-import iconLeftChevron from './images/icon/icon_left.svg';
-import iconMenu from './images/icon/icon_menu.svg';
-import iconMusic from './images/icon/icon_music.svg';
-import iconMute from './images/icon/icon_mute.svg';
-import iconPause from './images/icon/icon_pause.svg';
-import iconRandom from './images/icon/icon_random.svg';
-import iconRightChevron from './images/icon/icon_right.svg';
-import iconscPause from './images/icon/icon_scPause.svg';
-import iconscPlay from './images/icon/icon_scPlay.svg';
-import iconSearch from './images/icon/icon_search.svg';
 import iconSoundBird from './images/icon/icon_bird.svg';
 import iconSoundCoffee from './images/icon/icon_coffee.svg';
 import iconSoundFire from './images/icon/icon_fire.svg';
@@ -25,341 +19,239 @@ import iconSoundRain from './images/icon/icon_rain.svg';
 import iconSoundTrain from './images/icon/icon_train.svg';
 import iconSoundWaves from './images/icon/icon_waves.svg';
 import iconSoundWhiteNoise from './images/icon/icon_whitenoise.svg';
-import iconTwitter from './images/icon/icon_twitter.svg';
-import iconVolume from './images/icon/icon_sound_blue.svg';
-import logoSoundcloud from './images/icon/logo_soundcloud.png';
 import logoSoundrown from './images/icon/logo_soundrown.svg';
+import iconMail from './images/icon/icon_mail.svg';
+import iconHome from './images/icon/icon_home.svg';
+import iconTwitter from './images/icon/icon_twitter.svg';
 
-function App() {
-	return (
-		<div>
+class App extends Component {
+	constructor(props, context) {
+		super(props, context);
 
-			{/* <!-- Splash Screen --> */}
-			<div className="splash-container">
-				<div className="splash-content">
-					<div className="splash-logo-block">
-						<p className="splash-logo">SOUNDROWN</p>
+		this.state = {
+		};
+		ReactGA.initialize('UA-35477640-1');
+		ReactGA.pageview(window.location.pathname + window.location.search);
+	};
+
+	componentDidMount() {
+		window.addEventListener('beforeunload', this.beforeunload.bind(this));
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('beforeunload', this.beforeunload.bind(this));
+	}
+
+	beforeunload() {
+		ReactGA.event({
+			category: 'Exits',
+			action: 'LeavesPage'
+		});
+	}
+
+	render() {
+		return (
+			<div>
+				<Splash delay="5000" />
+
+				<div className="header">
+					<div className="mainlogo">
+						<img src={logoSoundrown} alt="SOUNDROWN" />
 					</div>
-					<p className="splash-text">relax. focus. escape.</p>
+
+					<div className="timer-container">
+						<Timer>
+							<Timer.Hours formatValue={(value) => `${(value < 10 ? `0${value}h ` : `${value}h `)}`} />
+							<Timer.Minutes formatValue={(value) => `${(value < 10 ? `0${value}m ` : `${value}m `)}`} />
+							<Timer.Seconds formatValue={(value) => `${(value < 10 ? `0${value}s ` : `${value}s `)}`} />
+						</Timer>
+					</div>
+
+					<MuteAll />
 				</div>
-			</div>
 
-			{/* <!-- Main Logo --> */}
-			<div className="mainlogo">
-				<img src={logoSoundrown} alt="SOUNDROWN" />
-			</div>
+				<div className="sounds-container">
+					<SoundCard
+						id="coffee"
+						trackId='133634507'
+						icon={iconSoundCoffee}
+					/>
 
-			{/* <!-- Mute Button --> */}
-			{/* <div id="mute-frame">
-				<div className="mute">
-					<img src={iconMute} alt="Mute Button" />
-					<span>Mute</span>
+					<SoundCard
+						id="rain"
+						trackId='133634506'
+						icon={iconSoundRain}
+					/>
+
+					<SoundCard
+						id="waves"
+						trackId='133634513'
+						icon={iconSoundWaves}
+					/>
+
+					<SoundCard
+						id="fire"
+						trackId='133634510'
+						icon={iconSoundFire}
+					/>
+
+					<SoundCard
+						id="birds"
+						trackId='133634508'
+						icon={iconSoundBird}
+					/>
+
+					<SoundCard
+						id="night"
+						trackId='133634511'
+						icon={iconSoundNight}
+					/>
+
+					<SoundCard
+						id="train"
+						trackId='133634504'
+						icon={iconSoundTrain}
+					/>
+
+					<SoundCard
+						id="fountain"
+						trackId='415247925'
+						icon={iconSoundFountain}
+					/>
+
+					<SoundCard
+						id="whitenoise"
+						trackId='133634509'
+						icon={iconSoundWhiteNoise}
+					/>
+
+					<SoundCard
+						id="playground"
+						trackId='415247904'
+						icon={iconSoundPlayground}
+					/>
 				</div>
-			</div> */}
 
-			<div className="sounds-container">
-				<SoundCard
-					id="coffee"
-					trackId='133634507'
-					icon={iconSoundCoffee}
+				<AdSense.Google
+					client='ca-pub-5739077933952279'
+					slot='1030414388'
+					style={{ display: 'block' }}
+					format='auto'
+					responsive='true'
 				/>
 
-				<SoundCard
-					id="rain"
-					trackId='133634506'
-					icon={iconSoundRain}
-				/>
+				<section className="about section">
+					<h2>About</h2>
+					<p>Soundrown was created to help individuals like you, relax and focus while you work on your daily tasks or creative aspirations.  Brought to you by a small and passionate group, interested in creating an experience for everyone to enjoy.</p>
+				</section>
 
-				<SoundCard
-					id="waves"
-					trackId='133634513'
-					icon={iconSoundWaves}
-				/>
+				<section className="knowledge section">
+					<h2>Why sounds?</h2>
+					<a href="http://www.theatlantic.com/health/archive/2012/06/study-of-the-day-why-crowded-coffee-shops-fire-up-your-creativity/258742/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<p>STUDY OF THE DAY: Why Crowded Coffee Shops Fire Up Your Creativity</p>
+					</a>
+					<a href="http://lifehacker.com/5365012/the-best-sounds-for-getting-work-done"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<p>THE BEST SOUNDS: For Getting Work Done</p>
+					</a>
+					<a href="http://www.mdpi.com/1660-4601/7/3/1036"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<p>STRESS RECOVERY: During Exposure to Nature Sound and Environmental Noise</p>
+					</a>
+					<a href="http://www.apartmenttherapy.com/sleep-better-the-science-of-sound-machines-168208"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						<p>WHITE NOISE AND YOUR BRAIN: The Science of Sound Machines</p>
+					</a>
+				</section>
 
-				<SoundCard
-					id="fire"
-					trackId='133634510'
-					icon={iconSoundFire}
-				/>
-
-				<SoundCard
-					id="birds"
-					trackId='133634508'
-					icon={iconSoundBird}
-				/>
-
-				<SoundCard
-					id="night"
-					trackId='133634511'
-					icon={iconSoundNight}
-				/>
-
-				<SoundCard
-					id="train"
-					trackId='133634504'
-					icon={iconSoundTrain}
-				/>
-
-				<SoundCard
-					id="fountain"
-					trackId='415247925'
-					icon={iconSoundFountain}
-				/>
-
-				<SoundCard
-					id="whitenoise"
-					trackId='133634509'
-					icon={iconSoundWhiteNoise}
-				/>
-
-				<SoundCard
-					id="playground"
-					trackId='415247904'
-					icon={iconSoundPlayground}
-				/>
-			</div>
-
-			{/* <!-- Nav --> */}
-
-			<div id="navcontainer">
-				<nav>
-					<ul>
-						{/* <!-- Menu Button --> */}
-						<li id="menu"><a href="/#">
-							<img src={iconMenu} alt="About" />
-							<span>Menu</span>
-						</a>
-
-							<div id="menudrop">
-								{/* <!-- Menu Sub-Nav --> */}
-								<div id="menunav">
-									<ul>
-										<li id="aboutbut"><p>About</p></li>
-										<li id="knowledgebut"><p>Knowledge</p></li>
-										<li id="creditsbut"><p>Credits</p></li>
-									</ul>
-								</div>
-
-								{/* <!-- About Body --> */}
-								<div id="aboutdesc">
-									<img src={logoSoundrown} alt="Soundrown" />
-									<p>___________</p><br />
-									<p>Soundrown was created to help individuals like you, relax and focus while you work on your daily tasks or creative aspirations.  Brought to you by a small and passionate group, interested in creating an experience for everyone to enjoy.</p>
-								</div>
-
-								{/* <!-- Knowledge Body --> */}
-								<div id="knowledgedesc">
-									<ol>
-										<li>
-											<a href="http://www.theatlantic.com/health/archive/2012/06/study-of-the-day-why-crowded-coffee-shops-fire-up-your-creativity/258742/"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<h2>STUDY OF THE DAY:</h2>
-												<p>_____</p>
-												<br />
-												<p>Why Crowded Coffee Shops Fire Up Your Creativity</p>
-											</a>
-										</li>
-										<li>
-											<a href="http://lifehacker.com/5365012/the-best-sounds-for-getting-work-done"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<h2>THE BEST SOUNDS:</h2>
-												<p>_____</p>
-												<br />
-												<p>For Getting Work Done</p>
-											</a>
-										</li>
-										<li>
-											<a href="http://www.mdpi.com/1660-4601/7/3/1036"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<h2>STRESS RECOVERY:</h2>
-												<p>_____</p>
-												<br />
-												<p>During Exposure to Nature Sound and Environmental Noise</p>
-											</a>
-										</li>
-										<li>
-											<a href="http://www.apartmenttherapy.com/sleep-better-the-science-of-sound-machines-168208"
-												target="_blank"
-												rel="noopener noreferrer"
-											>
-												<h2>WHITE NOISE AND YOUR BRAIN:</h2>
-												<p>_____</p>
-												<br />
-												<p>The Science of Sound Machines</p>
-											</a>
-										</li>
-									</ol>
-								</div>
-
-								{/* <!-- Credits Body --> */}
-								<div id="creditsdesc">
-
-									<div className="nametag">
-										<div>
-											<h2>RISHI AGRAWAL</h2>
-											<p>_____</p>
-											<br />
-											<p className="role">Founder</p>
-										</div>
-										<div className="contact">
-											<a href="mailto:rishi@soundrown.com" title="rishi@soundrown.com">
-												<img src="icon/icon_mail.svg" />
-											</a>
-											<a href="https://twitter.com/rishim3" target="_blank" rel="noopener noreferrer" title="@rishim3">
-												<img src="icon/icon_twitter.svg" />
-											</a>
-										</div>
-									</div>
-
-									<div className="nametag">
-										<div>
-											<h2>JOSEPH DECKER</h2>
-											<p>_____</p>
-											<br />
-											<p className="role">Creative</p>
-										</div>
-										<div className="contact">
-											<a href="mailto:joseph@soundrown.com" title="joseph@soundrown.com">
-												<img src="icon/icon_mail.svg" />
-											</a>
-											<a href="https://twitter.com/_josephdecker" target="_blank" rel="noopener noreferrer" title="@_josephdecker">
-												<img src="icon/icon_twitter.svg" />
-											</a>
-											<a href="http://www.josephdecker.com/" target="_blank" rel="noopener noreferrer" title="www.josephdecker.com">
-												<img src="icon/icon_home.svg" />
-											</a>
-										</div>
-									</div>
-
-									<div className="nametag">
-										<div>
-											<h2>DANIEL LIN</h2>
-											<p>_____</p><br />
-											<p className="role">Developer</p>
-										</div>
-										<div className="contact">
-											<a href="mailto:daniel@soundrown.com" title="daniel@soundrown.com">
-												<img src="icon/icon_mail.svg" />
-											</a>
-											<a href="https://twitter.com/daniellinp" target="_blank" rel="noopener noreferrer" title="@daniellinp">
-												<img src="icon/icon_twitter.svg" />
-											</a>
-											<a href="http://www.daniel-lin.net" target="_blank" rel="noopener noreferrer" title="www.daniel-lin.net">
-												<img src="icon/icon_home.svg" />
-											</a>
-										</div>
-									</div>
-
-									<div className="nametag">
-										<div>
-											<h2>NATHAN SOOHOO</h2>
-											<p>_____</p><br />
-											<p className="role">Marketing</p>
-										</div>
-										<div className="contact">
-											<a href="mailto:nathan@soundrown.com" title="nathan@soundrown.com">
-												<img src="icon/icon_mail.svg" />
-											</a>
-											<a href="https://twitter.com/nsoohoo" target="_blank" rel="noopener noreferrer" title="@nsoohoo">
-												<img src="icon/icon_twitter.svg" />
-											</a>
-										</div>
-									</div>
-								</div>
-
-							</div>
-						</li>
-
-						{/* <!-- Music Button --> */}
-						<li id="music">
-							<a href="#">
-								<img src={iconMusic} alt="Music" />
-								<span>Music</span>
-							</a>
-
+				<section className="team section">
+					<h2>Team</h2>
+					<div className="team-grid">
+						<div className="team-card">
 							<div>
-								<div id="sc-playpause">
-									<img id="scPlay" src={iconscPlay} alt="SC Play" />
-									<img id="scPause" src={iconscPause} alt="SC Pause" />
-								</div>
-
-								<div id="sc-progress">
-									<div id="sc-title">Clair de lune - Debussy</div>
-
-									<div id="sc-progress_bar_bg"></div>
-									<div id="sc-progress_bar"></div>
-
-									<div id="sc-time">
-										<div id="sc-time_elapsed">0:00</div>
-										<div id="sc-time_total">5:58</div>
-									</div>
-								</div>
-
-								<div id="sc-volume">
-									<img src={iconVolume} alt="SC-Volume" />
-
-									<div id="sc-volume_bg"></div>
-									<div id="sc-volume_slider"></div>
-								</div>
+								<h3>Rishi Agrawal</h3>
+								<p className="role">Founder</p>
 							</div>
+							<div className="contact">
+								<a href="mailto:rishi@soundrown.com" title="rishi@soundrown.com">
+									<img src={iconMail} alt="Email" />
+								</a>
+								<a href="https://twitter.com/rishim3" target="_blank" rel="noopener noreferrer" title="@rishim3">
+									<img src={iconTwitter} alt="Twitter" />
+								</a>
+							</div>
+						</div>
 
+						<div className="team-card">
 							<div>
-								<div id="logo-soundcloud">
-									<a href="https://soundcloud.com/" target="_blank" rel="noopener noreferrer"><img src={logoSoundcloud} alt="Soundcloud" /></a>
-								</div>
-
-								<div id="search-button"><img src={iconSearch} alt="Search" /></div>
-
-								<form id="search-frame" onSubmit="return false;">
-									<input id="search" type="text" name="Search" placeholder="Search..." />
-									<ul id="results"></ul>
-								</form>
+								<h3>Joseph Decker</h3>
+								<p className="role">Creative</p>
 							</div>
+							<div className="contact">
+								<a href="mailto:joseph@soundrown.com" title="joseph@soundrown.com">
+									<img src={iconMail} alt="Email" />
+								</a>
+								<a href="https://twitter.com/_josephdecker" target="_blank" rel="noopener noreferrer" title="@_josephdecker">
+									<img src={iconTwitter} alt="Twitter" />
+								</a>
+								<a href="http://www.josephdecker.com/" target="_blank" rel="noopener noreferrer" title="www.josephdecker.com">
+									<img src={iconHome} alt="Homepage" />
+								</a>
+							</div>
+						</div>
 
-						</li>
+						<div className="team-card">
+							<div>
+								<h3>Daniel Lin</h3>
+								<p className="role">Designer / Developer</p>
+							</div>
+							<div className="contact">
+								<a href="mailto:daniel@soundrown.com" title="daniel@soundrown.com">
+									<img src={iconMail} alt="Email" />
+								</a>
+								<a href="https://twitter.com/daniellinp" target="_blank" rel="noopener noreferrer" title="@daniellinp">
+									<img src={iconTwitter} alt="Twitter" />
+								</a>
+								<a href="http://www.daniel-lin.net" target="_blank" rel="noopener noreferrer" title="www.daniel-lin.net">
+									<img src={iconHome} alt="Homepage" />
+								</a>
+							</div>
+						</div>
 
-						{/* <!-- Random Button --> */}
-						<li id="random">
-							<a href="#"><img src={iconRandom} alt="Random" />
-								<span>Random</span>
-							</a>
-						</li>
+						<div className="team-card">
+							<div>
+								<h3>Nathan SooHoo</h3>
+								<p className="role">Marketing</p>
+							</div>
+							<div className="contact">
+								<a href="mailto:nathan@soundrown.com" title="nathan@soundrown.com">
+									<img src={iconMail} alt="Email" />
+								</a>
+								<a href="https://twitter.com/nsoohoo" target="_blank" rel="noopener noreferrer" title="@nsoohoo">
+									<img src={iconTwitter} alt="Twitter" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</section>
 
-						{/* <!-- Twitter Button --> */}
-						<li id="twitter">
-							<a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fsoundrown.com&text=relax.+focus.+escape.&via=soundrown" target="_blank" rel="noopener noreferrer">
-								<img src={iconTwitter} alt="Tweet Us" />
-								<span>Tweet Us</span>
-							</a>
-						</li>
-
-						{/* <!-- Suggest Button --> */}
-						<li id="suggest">
-							<a href="https://docs.google.com/spreadsheet/viewform?formkey=dFdqd3VUQnZXSFFMZFYyTWl5NFUtWVE6MQ" target="_blank" rel="noopener noreferrer">
-								<img src="icon/icon_suggest.svg" alt="Improve Us" />
-								<span>Improve Us</span>
-							</a>
-						</li>
-
-					</ul>
-				</nav>
+				<footer>
+					<a href="https://docs.google.com/spreadsheet/viewform?formkey=dFdqd3VUQnZXSFFMZFYyTWl5NFUtWVE6MQ" target="_blank" rel="noopener noreferrer">
+						Have some feedback?
+					</a>
+					<div id="copyrights"><p>Made with ♥ in San Francisco.&nbsp;&nbsp;Copyright &copy;2020 soundrown</p></div>
+				</footer>
 			</div>
-
-			{/* <!-- Stopwatch --> */}
-			{/* <span id="stopwatch">00h 00m 00s</span> */}
-
-			{/* <div id="soundcloud-player"> */}
-			{/* <!-- default height 166 --> */}
-			{/* <iframe id="scplayer" width="900" height="0" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/73594607&color=ff932b&show_artwork=false"></iframe> */}
-			{/* </div> */}
-		</div>
-	);
+		);
+	}
 }
-
 export default App;
