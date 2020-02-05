@@ -245,6 +245,10 @@ class App extends Component {
 				</section>
 
 				<footer>
+					<a href="https://twitter.com/soundrown" target="_blank" rel="noopener noreferrer" title="@soundrown">
+						<img src={iconTwitter} alt="@soundrown Twitter" />
+						Tweet at us!
+					</a>
 					<a href="https://docs.google.com/spreadsheet/viewform?formkey=dFdqd3VUQnZXSFFMZFYyTWl5NFUtWVE6MQ" target="_blank" rel="noopener noreferrer">
 						Have some feedback?
 					</a>
