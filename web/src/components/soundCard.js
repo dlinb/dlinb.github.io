@@ -73,8 +73,8 @@ class SoundCard extends Component {
   render() {
     return (
       <div id={this.props.id} className="sound-card-container">
-        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div className={`sound-card ${this.state.isPlaying ? 'paused' : 'playing'}`} onClick={() => this.handleClickSoundCard()}>
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
           <img className="icon-drop" src={this.props.icon} alt={this.props.id} />
           <img className="icon-drop pauseicon" src={iconPause} alt="Pause" />
           <p className="sound-name">{this.props.id}</p>
