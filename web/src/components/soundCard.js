@@ -16,6 +16,7 @@ class SoundCard extends Component {
     };
 
     this.handleVolumeSliderChange = this.handleVolumeSliderChange.bind(this);
+
   };
 
   componentDidMount() {
@@ -32,7 +33,15 @@ class SoundCard extends Component {
         soundManager.createSound({
           id: id,
           url: streamUrl,
-          loops: 2
+          loops: 2,
+          onbufferchange: function (e) {
+            var soundPlayer = document.getElementById(id);
+            if (e === 1) {
+              soundPlayer.classList.add("buffering");
+            } else {
+              soundPlayer.classList.remove("buffering");
+            }
+          },
         })
       },
       ontimeout: function () {
@@ -64,12 +73,13 @@ class SoundCard extends Component {
   render() {
     return (
       <div id={this.props.id} className="sound-card-container">
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
         <div className={`sound-card ${this.state.isPlaying ? 'paused' : 'playing'}`} onClick={() => this.handleClickSoundCard()}>
           <img className="icon-drop" src={this.props.icon} alt={this.props.id} />
           <img className="icon-drop pauseicon" src={iconPause} alt="Pause" />
           <p className="sound-name">{this.props.id}</p>
         </div>
-        <Slider className="sound-volume-slider" min={0} max={100} defaultValue={100} onChange={this.handleVolumeSliderChange}/>
+        <Slider className="sound-volume-slider" min={0} max={100} defaultValue={100} onChange={this.handleVolumeSliderChange} />
       </div>
     );
   };

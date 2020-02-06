@@ -5,6 +5,16 @@ $sound-size-mobile: 120px;
 //---------------------------------------
 .sound-card-container {
   position: relative;
+
+  &.buffering {
+    .lds-ring {
+      opacity: 1;
+      z-index: 1000;
+    }
+    .sound-card {
+      opacity: 0.25;
+    }
+  }
 }
 
 .sound-card {
