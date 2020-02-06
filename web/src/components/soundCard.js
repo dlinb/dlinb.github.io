@@ -23,7 +23,7 @@ class SoundCard extends Component {
     const { id } = this.props;
     var trackId = this.props.trackId;
     var clientId = '3c1222aaa64b9dc73bc257260a5497cb';
-    var streamUrl = 'http://api.soundcloud.com/tracks/' + trackId + '/stream?client_id=' + clientId;
+    var streamUrl = 'https://api.soundcloud.com/tracks/' + trackId + '/stream?client_id=' + clientId;
 
     soundManager.setup({
       url: '../swf/',
@@ -74,7 +74,7 @@ class SoundCard extends Component {
     return (
       <div id={this.props.id} className="sound-card-container">
         <div className={`sound-card ${this.state.isPlaying ? 'paused' : 'playing'}`} onClick={() => this.handleClickSoundCard()}>
-          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          <div className="lds-ring"><div></div><div></div><div></div><div></div></div>
           <img className="icon-drop" src={this.props.icon} alt={this.props.id} />
           <img className="icon-drop pauseicon" src={iconPause} alt="Pause" />
           <p className="sound-name">{this.props.id}</p>
