@@ -12,7 +12,9 @@ $sound-size-mobile: 120px;
       z-index: 1000;
     }
     .sound-card {
-      opacity: 0.25;
+      img, p {
+        opacity: 0;
+      }
     }
   }
 }
