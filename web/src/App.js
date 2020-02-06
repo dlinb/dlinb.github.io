@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactGA from 'react-ga';
-import AdSense from 'react-adsense-ad';
+import AdSense from 'react-adsense';
 
 import './styles/index.scss';
 import Timer from 'react-compound-timer';
