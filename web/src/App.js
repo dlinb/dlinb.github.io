@@ -132,13 +132,15 @@ class App extends Component {
 					/>
 				</div>
 
-				<AdSense.Google
-					client='ca-pub-5739077933952279'
-					slot='1030414388'
-					style={{ display: 'block' }}
-					format='auto'
-					responsive='true'
-				/>
+				<div className="ad-container">
+					<AdSense.Google
+						client='ca-pub-5739077933952279'
+						slot='1030414388'
+						style={{ display: 'block' }}
+						format='auto'
+						responsive='true'
+					/>
+				</div>
 
 				<section className="about section">
 					<h2>About</h2>
