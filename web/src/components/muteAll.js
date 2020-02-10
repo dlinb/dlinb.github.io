@@ -32,7 +32,7 @@ class MuteAll extends Component {
       <div className="mute-frame">
         <div className={`mute ${this.state.muteAll ? 'muted': ''}`} onClick={() => this.handleClickMuteAll()}>
           <img src={iconMute} alt="Mute Button" />
-          <span>mute all</span>
+          <span>{this.state.muteAll ? 'mute on': 'mute off'}</span>
         </div>
       </div>
     );
