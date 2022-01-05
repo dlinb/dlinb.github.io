@@ -139,6 +139,7 @@ class App extends Component {
 						style={{ display: 'block' }}
 						format='auto'
 						responsive='true'
+						data-adtest='on'
 					/>
 				</div>
 
